@@ -1,5 +1,57 @@
 /* Eslam part */
-
+body{
+    background-color: blanchedalmond;
+}
+h1{
+    text-align: center;
+    margin-top: 40px;
+    margin-right: 140px;
+}
+#gameTimer{
+    text-align: center;
+    margin-right: 160px;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+#game{
+    margin-right: 100px;
+    margin-top: 20px;
+    margin-left: 220px;
+    text-align: center;
+    border: 3px solid black;
+    width: 1000px;
+    height: 550px;
+}
+img{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+#footer{
+    font-size: 30px;
+    margin-top: -40px;
+    margin-left: 220px;
+    width: 1000px;
+    text-align: center;
+    position: relative;
+    font-weight: bold;
+}
+.footerDivs{
+    width: 300px;
+    float: left;
+    text-align: left;
+    margin-left: 20px;
+    padding-left: 10px;
+}
+.score{
+    text-align: right;
+    margin-left: -20px;
+    padding-left: 10px;
+}
+.level{
+    text-align: center;
+}
 /* Esraa part */
 
 /* Mahmoud part */
