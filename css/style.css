@@ -15,12 +15,16 @@ h1{
     margin-top: 10px;
 }
 #game{
-    margin-right: 100px;
+    /* margin-right: 100px; */
+    margin-right: auto;
     margin-top: 20px;
-    margin-left: 220px;
+    /* margin-left: 20px; */
+    margin-left: auto;
     text-align: center;
     border: 3px solid black;
-    width: 1000px;
+    /* width: 1000px; */
+    /* width: 75%; */
+    width: 800px;
     height: 550px;
 }
 img{
@@ -53,5 +57,14 @@ img{
     text-align: center;
 }
 /* Esraa part */
+.bird{
+    display: block;
+    position: absolute;
+    right: 120px;
+    width: 30px;
+    height:30px;
+    top: 0;
+    
+}
 
 /* Mahmoud part */

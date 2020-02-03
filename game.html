@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Game</title>
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="jquery-ui-1.12.1.custom/jquery-ui.css">
-    </head>
-    <body>
-        <div id="container">
-            <h1>Welcome &nbsp;<span id="welcomeUser">Eslam Elkholy</span></h1>
-            <div id="gameTimer">
-                <span id="timer">00:00</span>
+
+<head>
+    <title>Game</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="jquery-ui-1.12.1.custom/jquery-ui.css">
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Welcome &nbsp;<span id="welcomeUser">Eslam Elkholy</span></h1>
+        <div id="gameTimer">
+            <span id="timer">00:00</span>
+        </div>
+        <div id="game">
+            <img src="images/game.png">
+        </div>
+        <div id="footer">
+            <div class="footerDivs">
+                <span>Lives</span>
             </div>
-            <div id="game">
-                <img src="images/game.png">
+            <div class="footerDivs level">
+                <span>Level</span>
             </div>
-            <div id="footer">
-                <div class="footerDivs">
-                    <span>Lives</span>
-                </div>
-                <div class="footerDivs level">
-                    <span>Level</span>
-                </div>
-                <div class="footerDivs score">
-                    <span>Score</span>
-                </div>
+            <div class="footerDivs score">
+                <span>Score</span>
             </div>
         </div>
-    </body>
-    <script src="jquery-3.2.1.js"></script>
-    <script src="jquery-ui-1.12.1.custom/jquery-ui.js" ></script>
+    </div>
+    <script src="js/game.js"></script>
+</body>
+
+
+
 </html>
