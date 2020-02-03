@@ -27,7 +27,7 @@ h1{
     width: 800px;
     height: 550px;
 }
-img{
+#gameBackground{
     position: relative;
     width: 100%;
     height: 100%;
@@ -55,6 +55,16 @@ img{
 }
 .level{
     text-align: center;
+}
+#birds img{
+    position: relative;
+}
+#birds{
+    margin-top: -550px;
+    position: relative;
+}
+.test{
+    /* Note on die filter: hue-rotate(240deg) saturate(3.3) grayscale(50%); */
 }
 /* Esraa part */
 .bird{
