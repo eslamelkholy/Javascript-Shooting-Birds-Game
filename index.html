@@ -3,28 +3,20 @@
 
 <head>
     <title>Welcome</title>
-    <link rel="stylesheet" href="jquery-ui-1.12.1.custom/jquery-ui.css">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 
 <body>
-    <div class="col-6">
+    <div class="col-3" style="padding: 0;">
         <div class="login-page">
-            <div class="form" >
-                <form class="login-form" action="game.html"  id="loginForm">
-                    <input type="text" name="username" placeholder="username" class="form-control" />
-                    <select name="levels" id="gameLevels" class="form-control">
+            <div class="form">
+                <form class="login-form" action="./game.html" id="loginForm">
+                    <input type="text" name="username" placeholder="Your Name" class="form-control" title="who are you champion " required>
+                    <select name="levels" id="gameLevels" class="form-control" title="pick your level" required>
                         <option value="" disabled selected hidden>Choose your level</option>
                         <option value="level1">level 1</option>
                         <option value="level2">level 2</option>
@@ -39,8 +31,6 @@
 
     </div>
 
+    <script src="js/login.js"></script>
 </body>
-<script src="jquery-3.2.1.js"></script>
-<script src="jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-
 </html>
