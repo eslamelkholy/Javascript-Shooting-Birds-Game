@@ -5,8 +5,6 @@ class Bird {
         this.bird = birdImg;
         this.bird.src = src;
         this.bird.classList.add("bird");
-        // console.log(this.bird);
-
         this.bird.style.top = top + "px";
 
     }
@@ -46,6 +44,10 @@ window.setInterval(function () {
     let birdObj = new Bird(topp, images[Math.floor(Math.random() * 1) + 0])
     birdObj.addtoParent();
     birdObj.moveLeft();
+    let birdsNumber = Math.floor(Math.random() * 7)+1;
+    src = "bird1.png"
+    // i = 1 ,2 3 ,3
+    src = "bird"+i+"pmg"
     // console.log(birdObj.getRight())
     if (parseInt(birdObj.getRight()) ==120){
         // console.log("hello");
