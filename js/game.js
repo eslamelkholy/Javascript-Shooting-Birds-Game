@@ -1,17 +1,17 @@
-let images = ["./images/giphy.gif", "./images/bird2.gif", "./images/bird3.gif"];
+let images = ["./images/bird4.gif", "./images/bird5.gif", "./images/bird6.gif"];
 let windowWidth = window.innerWidth;
 let windowHeight = window.innerHeight;
 const urlParams = window.location.search;
 let levelval = getSecondPart(urlParams);
 let speed = 0;
-let birdsArray=[];
+let birdsArray = [];
 class Bird {
     constructor(top, src) {
         let birdImg = document.createElement("img");
         this.bird = birdImg;
         this.bird.src = src;
         this.bird.classList.add("bird");
-        this.bird.classList.add("flip");
+        // this.bird.classList.add("flip");
         this.bird.style.top = top + "px";
         this.bird.style.right = 0;
         this.myInterval;
@@ -21,14 +21,14 @@ class Bird {
         body.appendChild(this.bird);
     }
     moveLeft = function () {
-       
-            let counter = 100;
-            this.bird.style.right=parseInt(this.bird.style.right)+ counter + "px";
+
+        let counter = 100;
+        this.bird.style.right = parseInt(this.bird.style.right) + counter + "px";
         //      $(this.bird).animate({
         //     right: "+=200"
         // }, 1000) 
-       
-       
+
+
 
     }
     getRight = function () {
@@ -57,15 +57,17 @@ switch (levelval) {
 
 }
 window.setInterval(function () {
+    let topcount = 1;
     let birdsNumber = Math.floor(Math.random() * 7) + 1;
     for (let i = 0; i <= birdsNumber; i++) {
         let topp = Math.floor(Math.random() * (windowHeight - 200)) + (0);
-        let birdObj = new Bird(topp, images[Math.floor(Math.random() * 3) + 0])
+        let birdObj = new Bird(topp + topcount, images[Math.floor(Math.random() * 3) + 0])
         birdObj.addtoParent();
-       birdsArray.push(birdObj);
-       
+        birdsArray.push(birdObj);
+        topcount += 20;
+
     }
- 
+
     $("img:not(:first)").on("click", function () {
         // this.css(object);
         $(this).attr("src", "images/die.png").fadeTo(2000);
@@ -78,8 +80,8 @@ window.setInterval(function () {
     for (let i = 0; i < birdsArray.length; i++) {
         birdsArray[i].moveLeft();
     }
-         
-},speed)
+
+}, speed)
 //code for removing newly created objects
 // window.setInterval(function () {
 //     for (let i = 0; i < birdsArray.length; i++) {
