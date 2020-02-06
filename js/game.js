@@ -6,7 +6,6 @@ class Bird {
         this.bird.src = src;
         this.bird.classList.add("bird");
         // console.log(this.bird);
-
         this.bird.style.top = top + "px";
 
     }
@@ -19,7 +18,6 @@ class Bird {
         $(this.bird).animate({
             right: "+=800"
         }, 2000)
-        console.log(this.bird.style.right)
         if (parseInt(this.bird.style.right) ==920){
             console.log("hello");
             $(".bird").hide();
@@ -39,8 +37,6 @@ class Bird {
 
     }
 }
-
-
 window.setInterval(function () {
     let topp = Math.floor(Math.random() * 676) + 156;
     let birdObj = new Bird(topp, images[Math.floor(Math.random() * 1) + 0])
@@ -51,6 +47,11 @@ window.setInterval(function () {
         // console.log("hello");
         // birdObj.removeBird();
     }
+    $("img:not(:first)").on("click",function(event)
+    {
+        $(this).attr("src","images/die.png");
+        $(this).animate({top: '350px', opacity: '0.8'}, 1500).hide(1000);
+    });
 }, 2000)
 $(function(){
 
