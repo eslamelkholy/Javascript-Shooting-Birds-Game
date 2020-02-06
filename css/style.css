@@ -1,4 +1,5 @@
 * {
+  user-select: none;
   margin: 0;
   padding: 0;
 }
@@ -152,8 +153,8 @@ h1 {
   display: block;
   position: absolute;
   right: 0;
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   margin: 10px 2px;
   
   /* mix-blend-mode: multiply; */
@@ -173,6 +174,7 @@ h1 {
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 1;
     background-color: rgba(0, 0, 0, 0.6);
     color: white;
     transition: all 1s cubic-bezier(0.93, -0.22, 1, -0.01);
@@ -223,5 +225,20 @@ h1 {
     border: none;
 }
 
+#bomb {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  border: 3px solid rgba(255,0 ,0 , 0.2);
+}
+
+#bomb img{
+  position: absolute;
+  width: 150px;
+  left: 50%; 
+  top: 50%;
+  mix-blend-mode: multiply;
+
+}
 /* make white background transparent VV */
 /* mix-blend-mode: multiply; */
