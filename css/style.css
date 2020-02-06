@@ -153,8 +153,13 @@ h1 {
   display: block;
   position: absolute;
   right: 0;
+<<<<<<< HEAD
   width: 70px;
   height: 70px;
+=======
+  width: 100px;
+  height: 100px;
+>>>>>>> 3211579f8a59fc569308368e6db3909964304da0
   margin: 10px 2px;
   
   /* mix-blend-mode: multiply; */

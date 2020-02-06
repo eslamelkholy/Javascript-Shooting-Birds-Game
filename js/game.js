@@ -1,4 +1,4 @@
-let images = ["./images/bird4.gif", "./images/bird5.gif", "./images/bird6.gif"];
+let images = ["./images/20.gif", "./images/30.gif", "./images/40.gif"];
 let windowWidth = window.innerWidth;
 let windowHeight = window.innerHeight;
 const urlParams = window.location.search;
@@ -22,11 +22,13 @@ class Bird {
     }
     moveLeft = function () {
 
-        let counter = 100;
+         let counter = 100;
         this.bird.style.right = parseInt(this.bird.style.right) + counter + "px";
-        //      $(this.bird).animate({
-        //     right: "+=200"
-        // }, 1000) 
+        //  this.bird.style.right = 10+"px";
+        $(this.bird).animate({
+            // right: "+=200"
+            right: windowWidth
+        }, 5000)
 
 
 
@@ -49,7 +51,7 @@ class Bird {
 
 switch (levelval) {
     case "level1":
-        speed = 3000;
+        speed = 2000;
         break;
     case "level2":
         speed = 1000;
@@ -58,11 +60,12 @@ switch (levelval) {
 }
 window.setInterval(function () {
     let topcount = 1;
-    let birdsNumber = Math.floor(Math.random() * 7) + 1;
+    let birdsNumber = Math.floor(Math.random() * 3) + 1;
     for (let i = 0; i <= birdsNumber; i++) {
         let topp = Math.floor(Math.random() * (windowHeight - 200)) + (0);
         let birdObj = new Bird(topp + topcount, images[Math.floor(Math.random() * 3) + 0])
         birdObj.addtoParent();
+        birdObj.moveLeft();
         birdsArray.push(birdObj);
         topcount += 20;
 
@@ -75,21 +78,27 @@ window.setInterval(function () {
     });
 
 
-}, 1000);
-window.setInterval(function () {
-    for (let i = 0; i < birdsArray.length; i++) {
-        birdsArray[i].moveLeft();
-    }
-
-}, speed)
-//code for removing newly created objects
+}, speed);
+//moving birds
 // window.setInterval(function () {
 //     for (let i = 0; i < birdsArray.length; i++) {
-//         console.log(birdsArray[i].bird.style.right);
-//         if(birdsArray[i].bird.style.right >= windowWidth)
-//         // birdsArray.splice(i);
+//         birdsArray[i].moveLeft();
+//         // let counter = 100;
+//         // birdsArray[i].style.right = parseInt(this.bird.style.right) + counter + "px";
 //     }
-// }, 1000);
+
+// }, 1000)
+//code for removing newly created objects
+window.setInterval(function () {
+    // for (let i = 0; i < birdsArray.length; i++) {
+    //     if (parseInt(birdsArray[i].bird.style.right) == (windowWidth)) {
+    //         birdsArray.splice(i, 1);
+    //     }
+    // }
+    console.log(birdsArray.length);
+    birdsArray.shift();
+    console.log(birdsArray.length);
+}, 50);
 
 function getSecondPart(str) {
     return str.split('levels=')[1];
