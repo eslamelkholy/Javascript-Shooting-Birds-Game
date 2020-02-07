@@ -5,6 +5,10 @@ const urlParams = window.location.search;
 let levelval = getSecondPart(urlParams);
 let speed = 0;
 let birdsArray = [];
+/* <div id="bomb">
+    <img src="/images/ezgif.com-crop.gif" alt="">
+</div> */
+
 class Bird {
     constructor(top, src) {
         let birdImg = document.createElement("img");
@@ -13,8 +17,13 @@ class Bird {
         this.bird.classList.add("bird");
         // this.bird.classList.add("flip");
         this.bird.style.top = top + "px";
+<<<<<<< HEAD
         this.bird.style.right = 0;
         // this.myInterval;
+=======
+        this.bird.style.left = "100%";
+        this.myInterval;
+>>>>>>> 739d2a058628d4c76347b1a0ef78b6803881cf69
     }
     addtoParent = function () {
         var body = document.querySelector("body");
@@ -22,12 +31,17 @@ class Bird {
     }
     moveLeft = function () {
 
+<<<<<<< HEAD
         //  let counter = 100;
         // this.bird.style.right = parseInt(this.bird.style.right) + counter + "px";
+=======
+        let counter = 100;
+        this.bird.style.right = parseInt(this.bird.style.right) + counter + "px";
+>>>>>>> 739d2a058628d4c76347b1a0ef78b6803881cf69
         //  this.bird.style.right = 10+"px";
         $(this.bird).animate({
             // right: "+=200"
-            right: windowWidth
+            left: "-10%"
         }, 5000)
     }
     getRight = function () {
@@ -53,6 +67,7 @@ switch (levelval) {
         break;
 
 }
+<<<<<<< HEAD
 window.setInterval(function () {
     let topcount = 1;
     let birdsNumber = Math.floor(Math.random() * 3) + 1;
@@ -72,6 +87,9 @@ window.setInterval(function () {
         $(this).animate({ top: '450px', opacity: '0.8' }, 1500).hide(1000);
     });
 }, speed);
+=======
+
+>>>>>>> 739d2a058628d4c76347b1a0ef78b6803881cf69
 //moving birds
 // window.setInterval(function () {
 //     for (let i = 0; i < birdsArray.length; i++) {
@@ -83,6 +101,7 @@ window.setInterval(function () {
 // }, 1000)
 //code for removing newly created objects
 window.setInterval(function () {
+<<<<<<< HEAD
     // for (let i = 0; i < birdsArray.length; i++) {
     //     if (parseInt(birdsArray[i].bird.style.right) == (windowWidth)) {
     //         birdsArray.splice(i, 1);
@@ -90,11 +109,122 @@ window.setInterval(function () {
     // }
     birdsArray.shift();
 }, 50);
+=======
+    for (let i = 0; i < birdsArray.length; i++) {
+        if (parseInt(birdsArray[i].bird.style.right) == (windowWidth)) {
+            // $(birdsArray[i].bird).remove();
+            // console.log($(birdsArray[i]));
+            birdsArray.splice(birdsArray[i]);
+        }
+    }
+
+    // console.log(birdsArray.length);
+    // birdsArray.shift();
+    // console.log(birdsArray.length);
+}, 1500);
+>>>>>>> 739d2a058628d4c76347b1a0ef78b6803881cf69
 
 function getSecondPart(str) {
     return str.split('levels=')[1];
 }
+<<<<<<< HEAD
 $(function(){
     
     $('*').css('cursor', 'url(images/images.png),auto');
 });
+=======
+
+
+$(function () {
+    // sending name/level over localStorage
+    $("h1 span:first").text(localStorage.getItem("name"))
+    $("h1 span:last").text(localStorage.getItem("level"))
+    // ends here
+});
+
+let startBtn = $("#welcome button")
+
+startBtn.on("click", function () {
+    $("#welcome").addClass("out");
+    this.blur()
+})
+startBtn.on("click", startgame);
+
+function startgame() {
+    let time = 0;
+    window.setInterval(function () {
+        let topcount = 1;
+        time++;
+
+        let birdsNumber = Math.floor(Math.random() * 3) + 1;
+        for (let i = 0; i <= birdsNumber; i++) {
+            let topp = Math.floor(Math.random() * (windowHeight - 200)) + (0);
+            let birdObj = new Bird(topp + topcount, images[Math.floor(Math.random() * 3) + 0])
+            birdObj.addtoParent();
+            birdObj.moveLeft();
+            birdsArray.push(birdObj);
+            topcount += 20;
+        }
+
+        if (time % 5 == 0) {
+            let bombContainer = $(`<div id="bomb" class="falling"></div>`);
+            myBomb = bombContainer;
+            let bomb = $(`<img src="/images/ezgif.com-crop.gif">`);
+            bombContainer.css("left", Math.floor(Math.random() * 100) + "%")
+            // bomb.attr("src","");
+            // bomb.removeClass("boom");
+
+            bombContainer.append(bomb);
+            $("body").append(bombContainer);
+            setTimeout(function () {
+                bombContainer.remove();
+            }, 5000);
+
+            bomb.on("click", function () {
+                $(this).attr("src", "/images/DarlingScholarlyDoe-small.gif");
+                $(this).addClass("boom");
+
+                let leftValue = parseInt(bombContainer.css("left"));
+                let topValue = parseInt(bombContainer.css("top"));
+                // console.log("left ",leftValue ," top ", topValue);
+                // console.log(birdsArray);
+
+                for (i of birdsArray) {
+                    // console.log($(i.bird).css("right"));
+
+                    let birdleft = parseInt($(i.bird).css("left"));
+                    let birdtop = parseInt($(i.bird).css("top"));
+
+                    if (birdleft > leftValue && birdleft < leftValue + 350 &&
+                        birdtop > topValue && birdtop < topValue + 350) {
+                        console.log($(i));
+                        $(i.bird).trigger("click");
+                    }
+                    bombContainer.css("top", topValue);
+                    bombContainer.removeClass("falling");
+                    setTimeout(() => {
+                        $(this).hide(300)
+                        setTimeout(() => {
+                            $(this).parent().remove();
+                        }, 500);
+                    }, 500);
+                }
+            })
+        }
+
+        $("img:not(:first).bird").on("click", function () {
+            // this.css(object);
+            $(this).attr("src", "images/die.png").fadeTo(2000);
+            $(this).animate({
+                top: '350px',
+                opacity: '0.8'
+            }, 1500).hide(1000);
+        });
+
+
+    }, speed);
+
+
+
+}
+>>>>>>> 739d2a058628d4c76347b1a0ef78b6803881cf69
