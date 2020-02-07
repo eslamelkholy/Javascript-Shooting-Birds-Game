@@ -8,6 +8,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  overflow: hidden;
 }
 .wrapper {
 
@@ -153,13 +154,8 @@ h1 {
   display: block;
   position: absolute;
   right: 0;
-<<<<<<< HEAD
-  width: 70px;
-  height: 70px;
-=======
   width: 100px;
   height: 100px;
->>>>>>> 3211579f8a59fc569308368e6db3909964304da0
   margin: 10px 2px;
   
   /* mix-blend-mode: multiply; */
@@ -231,19 +227,39 @@ h1 {
 }
 
 #bomb {
-  width: 250px;
-  height: 250px;
+  width: 350px;
+  height: 350px;
   border-radius: 50%;
   border: 3px solid rgba(255,0 ,0 , 0.2);
+  position: absolute;
+  top: -350px;
 }
 
-#bomb img{
-  position: absolute;
-  width: 150px;
-  left: 50%; 
-  top: 50%;
-  mix-blend-mode: multiply;
+.falling{
+  animation: 6s bombdown forwards;
+}
 
+@keyframes bombdown{
+  0%{
+    top: -350px;
+  }
+  100%{
+    top: 120%;
+  }
+}
+
+
+#bomb img{
+  width: 100px;
+  transform: translateY(70%);
+  margin: 0 auto;
+  display: block;
+}
+
+.boom{
+  width: 450px !important;
+  transform: translate(-10%,-10%) !important;
+  /* animation: none !important; */
 }
 /* make white background transparent VV */
 /* mix-blend-mode: multiply; */

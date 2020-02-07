@@ -5,6 +5,10 @@ const urlParams = window.location.search;
 let levelval = getSecondPart(urlParams);
 let speed = 0;
 let birdsArray = [];
+/* <div id="bomb">
+    <img src="/images/ezgif.com-crop.gif" alt="">
+</div> */
+
 class Bird {
     constructor(top, src) {
         let birdImg = document.createElement("img");
@@ -58,27 +62,7 @@ switch (levelval) {
         break;
 
 }
-window.setInterval(function () {
-    let topcount = 1;
-    let birdsNumber = Math.floor(Math.random() * 3) + 1;
-    for (let i = 0; i <= birdsNumber; i++) {
-        let topp = Math.floor(Math.random() * (windowHeight - 200)) + (0);
-        let birdObj = new Bird(topp + topcount, images[Math.floor(Math.random() * 3) + 0])
-        birdObj.addtoParent();
-        birdObj.moveLeft();
-        birdsArray.push(birdObj);
-        topcount += 20;
 
-    }
-
-    $("img:not(:first)").on("click", function () {
-        // this.css(object);
-        $(this).attr("src", "images/die.png").fadeTo(2000);
-        $(this).animate({ top: '350px', opacity: '0.8' }, 1500).hide(1000);
-    });
-
-
-}, speed);
 //moving birds
 // window.setInterval(function () {
 //     for (let i = 0; i < birdsArray.length; i++) {
@@ -95,9 +79,9 @@ window.setInterval(function () {
     //         birdsArray.splice(i, 1);
     //     }
     // }
-    console.log(birdsArray.length);
+    // console.log(birdsArray.length);
     birdsArray.shift();
-    console.log(birdsArray.length);
+    // console.log(birdsArray.length);
 }, 50);
 
 function getSecondPart(str) {
@@ -110,7 +94,6 @@ $(function () {
     $("h1 span:first").text(localStorage.getItem("name"))
     $("h1 span:last").text(localStorage.getItem("level"))
     // ends here
-    
 });
 
 let startBtn = $("#welcome button")
@@ -118,25 +101,61 @@ let startBtn = $("#welcome button")
 startBtn.on("click",function() { $("#welcome").addClass("out"); this.blur() })
 startBtn.on("click",startgame);
 
-// function startgame() {
+function startgame() {
+    let time=0;
+    window.setInterval(function () {
+        let topcount = 1;
+        time++;
+        
+        let birdsNumber = Math.floor(Math.random() * 3) + 1;
+        for (let i = 0; i <= birdsNumber; i++) {
+            let topp = Math.floor(Math.random() * (windowHeight - 200)) + (0);
+            let birdObj = new Bird(topp + topcount, images[Math.floor(Math.random() * 3) + 0])
+            birdObj.addtoParent();
+            birdObj.moveLeft();
+            birdsArray.push(birdObj);
+            topcount += 20;
+        }
+
+        if(time % 5==0){ 
+            let bombContainer = $(`<div id="bomb" class="falling"></div>`);
+            myBomb = bombContainer;
+            let bomb = $(`<img src="/images/ezgif.com-crop.gif">`);
+            bombContainer.css("left",Math.floor(Math.random()*100)+"%")
+            // bomb.attr("src","");
+            // bomb.removeClass("boom");
+
+            bombContainer.append(bomb);           
+            $("body").append(bombContainer);
+            setTimeout(function(){
+                bombContainer.remove();
+            }, 5000);
+
+            bomb.on("click",function() {
+
+                $(this).attr("src","/images/DarlingScholarlyDoe-small.gif");
+                $(this).addClass("boom");
+                
+                bombContainer.css("top",bombContainer.css("top"));
+                bombContainer.removeClass("falling");
+                setTimeout(() => {
+                    $(this).hide(300)
+                    setTimeout(() => {
+                        $(this).parent().remove();
+                    }, 500);
+                }, 500);
+            })
+        }
+        
+        $("img:not(:first).bird").on("click", function () {
+            // this.css(object);
+            $(this).attr("src", "images/die.png").fadeTo(2000);
+            $(this).animate({ top: '350px', opacity: '0.8' }, 1500).hide(1000);
+        });
     
-//     gameInterval = window.setInterval(function () {
-//         let topp = Math.floor(Math.random() * 676) + 156;
-//         let birdObj = new Bird(topp, images[Math.floor(Math.random() * 1) + 0])
-//         birdObj.addtoParent();
-//         birdObj.moveLeft();
-//         // console.log(birdObj.getRight())
-//         if (parseInt(birdObj.getRight()) == 120) {
-//             // console.log("hello");
-//             // birdObj.removeBird();
-//         }
-//         $("img:not(:first)").on("click", function () {
-//             // this.css(object);
-//             $(this).attr("src", "images/die.png").fadeTo(2000);
-//             $(this).animate({
-//                 top: '350px',
-//                 opacity: '0.8'
-//             }, 1500).hide(1000);
-//         });
-//     }, 2000)
-// }
+    
+    }, speed);
+
+    
+
+}
