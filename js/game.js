@@ -17,13 +17,10 @@ class Bird {
         this.bird.classList.add("bird");
         // this.bird.classList.add("flip");
         this.bird.style.top = top + "px";
-<<<<<<< HEAD
         this.bird.style.right = 0;
         // this.myInterval;
-=======
         this.bird.style.left = "100%";
         this.myInterval;
->>>>>>> 739d2a058628d4c76347b1a0ef78b6803881cf69
     }
     addtoParent = function () {
         var body = document.querySelector("body");
@@ -31,13 +28,10 @@ class Bird {
     }
     moveLeft = function () {
 
-<<<<<<< HEAD
         //  let counter = 100;
         // this.bird.style.right = parseInt(this.bird.style.right) + counter + "px";
-=======
         let counter = 100;
         this.bird.style.right = parseInt(this.bird.style.right) + counter + "px";
->>>>>>> 739d2a058628d4c76347b1a0ef78b6803881cf69
         //  this.bird.style.right = 10+"px";
         $(this.bird).animate({
             // right: "+=200"
@@ -67,7 +61,6 @@ switch (levelval) {
         break;
 
 }
-<<<<<<< HEAD
 window.setInterval(function () {
     let topcount = 1;
     let birdsNumber = Math.floor(Math.random() * 3) + 1;
@@ -87,9 +80,7 @@ window.setInterval(function () {
         $(this).animate({ top: '450px', opacity: '0.8' }, 1500).hide(1000);
     });
 }, speed);
-=======
 
->>>>>>> 739d2a058628d4c76347b1a0ef78b6803881cf69
 //moving birds
 // window.setInterval(function () {
 //     for (let i = 0; i < birdsArray.length; i++) {
@@ -101,7 +92,6 @@ window.setInterval(function () {
 // }, 1000)
 //code for removing newly created objects
 window.setInterval(function () {
-<<<<<<< HEAD
     // for (let i = 0; i < birdsArray.length; i++) {
     //     if (parseInt(birdsArray[i].bird.style.right) == (windowWidth)) {
     //         birdsArray.splice(i, 1);
@@ -109,7 +99,6 @@ window.setInterval(function () {
     // }
     birdsArray.shift();
 }, 50);
-=======
     for (let i = 0; i < birdsArray.length; i++) {
         if (parseInt(birdsArray[i].bird.style.right) == (windowWidth)) {
             // $(birdsArray[i].bird).remove();
@@ -122,17 +111,14 @@ window.setInterval(function () {
     // birdsArray.shift();
     // console.log(birdsArray.length);
 }, 1500);
->>>>>>> 739d2a058628d4c76347b1a0ef78b6803881cf69
 
 function getSecondPart(str) {
     return str.split('levels=')[1];
 }
-<<<<<<< HEAD
 $(function(){
     
     $('*').css('cursor', 'url(images/images.png),auto');
 });
-=======
 
 
 $(function () {
@@ -227,4 +213,3 @@ function startgame() {
 
 
 }
->>>>>>> 739d2a058628d4c76347b1a0ef78b6803881cf69
