@@ -33,7 +33,9 @@ class Bird {
         $(this.bird).animate({
             // right: "+=200"
             left: "-10%"
-        }, speed)
+        }, speed,function () {
+            this.remove();
+        })
     }
     getRight = function () {
         return this.bird.style.right;
