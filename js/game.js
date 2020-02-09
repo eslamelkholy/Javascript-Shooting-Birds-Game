@@ -110,7 +110,7 @@ window.setInterval(function () {
     // console.log(birdsArray.length);
     // birdsArray.shift();
     // console.log(birdsArray.length);
-}, 1500);
+// }, 1500);
 
 function getSecondPart(str) {
     return str.split('levels=')[1];
