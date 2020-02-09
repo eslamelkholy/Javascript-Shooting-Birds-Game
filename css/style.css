@@ -230,7 +230,6 @@ h1 {
   width: 350px;
   height: 350px;
   border-radius: 50%;
-  border: 3px solid rgba(255,0 ,0 , 0.2);
   position: absolute;
   top: -350px;
 }
@@ -259,7 +258,6 @@ h1 {
 .boom{
   width: 450px !important;
   transform: translate(-10%,-10%) !important;
-  /* animation: none !important; */
 }
 /* make white background transparent VV */
 /* mix-blend-mode: multiply; */
