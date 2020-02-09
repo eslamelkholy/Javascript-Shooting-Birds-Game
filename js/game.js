@@ -177,6 +177,7 @@ function startgame() {
 
         $("img:not(:first).bird").on("click", function () {
             killSound.play();
+            gameScore($(this).attr('src'));
             $(this).stop();
             $(this).attr("src", "images/die.png").fadeTo(2000);
             $(this).animate({
@@ -188,6 +189,33 @@ function startgame() {
     
             $('*').css('cursor', 'url(images/images.png),auto');
         });
+        function gameScore(score)
+        {
+            let currentScore = parseInt($("span.playerScore").text());
+            switch(score)
+            {
+                case './images/20.gif':
+                    currentScore = currentScore + 10;
+                    $("span.playerScore").text(currentScore);
+                    break;
+                case './images/30.gif':
+                    if(currentScore >= 10)
+                    {
+                        currentScore = parseInt(currentScore) - 10;
+                        $("span.playerScore").text(currentScore);
+                    }
+                    else if(currentScore == 5)
+                    {
+                        $("span.playerScore").text("0");
+                    }
+                    
+                    break;
+                case './images/40.gif':
+                    currentScore = currentScore + 5;
+                    $("span.playerScore").text(currentScore);
+                    break;
+            }
+        }
 
 
     }, 1000);
