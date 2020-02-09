@@ -2,7 +2,7 @@ let images = ["./images/20.gif", "./images/30.gif", "./images/40.gif"];
 let windowWidth = window.innerWidth;
 let windowHeight = window.innerHeight;
 const urlParams = window.location.search;
-let levelval = getSecondPart(urlParams);
+let levelval = localStorage.getItem("level");
 let speed = 0;
 let birdsArray = [];
 /* <div id="bomb">
@@ -12,6 +12,7 @@ let birdsArray = [];
 class Bird {
     constructor(top, src) {
         let birdImg = document.createElement("img");
+        birdImg.setAttribute('draggable', false);
         this.bird = birdImg;
         this.bird.src = src;
         this.bird.classList.add("bird");
@@ -123,51 +124,52 @@ function startgame() {
             topcount += 20;
         }
 
-        if (time % 5 == 0) {
-            let bombContainer = $(`<div id="bomb" class="falling"></div>`);
-            myBomb = bombContainer;
-            let bomb = $(`<img src="/images/ezgif.com-crop.gif">`);
-            bombContainer.css("left", Math.floor(Math.random() * 100) + "%")
-            // bomb.attr("src","");
-            // bomb.removeClass("boom");
+        if (levelval == "level2")
+            if (time % 5 == 0) {
+                let bombContainer = $(`<div id="bomb" class="falling" draggable="false"></div>`);
+                myBomb = bombContainer;
+                let bomb = $(`<img src="/images/ezgif.com-crop.gif">`);
+                bombContainer.css("left", Math.floor(Math.random() * 100) + "%")
+                // bomb.attr("src","");
+                // bomb.removeClass("boom");
 
-            bombContainer.append(bomb);
-            $("body").append(bombContainer);
-            setTimeout(function () {
-                bombContainer.remove();
-            }, 5000);
+                bombContainer.append(bomb);
+                $("body").append(bombContainer);
+                setTimeout(function () {
+                    bombContainer.remove();
+                }, 5000);
 
-            bomb.on("click", function () {
-                $(this).attr("src", "/images/DarlingScholarlyDoe-small.gif");
-                $(this).addClass("boom");
+                bomb.on("click", function () {
+                    $(this).attr("src", "/images/DarlingScholarlyDoe-small.gif");
+                    $(this).addClass("boom");
 
-                let leftValue = parseInt(bombContainer.css("left"));
-                let topValue = parseInt(bombContainer.css("top"));
-                // console.log("left ",leftValue ," top ", topValue);
-                // console.log(birdsArray);
+                    let leftValue = parseInt(bombContainer.css("left"));
+                    let topValue = parseInt(bombContainer.css("top"));
+                    // console.log("left ",leftValue ," top ", topValue);
+                    // console.log(birdsArray);
 
-                for (i of birdsArray) {
-                    // console.log($(i.bird).css("right"));
+                    for (i of birdsArray) {
+                        // console.log($(i.bird).css("right"));
 
-                    let birdleft = parseInt($(i.bird).css("left"));
-                    let birdtop = parseInt($(i.bird).css("top"));
+                        let birdleft = parseInt($(i.bird).css("left"));
+                        let birdtop = parseInt($(i.bird).css("top"));
 
-                    if (birdleft > leftValue && birdleft < leftValue + 350 &&
-                        birdtop > topValue && birdtop < topValue + 350) {
-                        console.log($(i));
-                        $(i.bird).trigger("click");
-                    }
-                    bombContainer.css("top", topValue);
-                    bombContainer.removeClass("falling");
-                    setTimeout(() => {
-                        $(this).hide(300)
+                        if (birdleft > leftValue && birdleft < leftValue + 350 &&
+                            birdtop > topValue && birdtop < topValue + 350) {
+                            console.log($(i));
+                            $(i.bird).trigger("click");
+                        }
+                        bombContainer.css("top", topValue);
+                        bombContainer.removeClass("falling");
                         setTimeout(() => {
-                            $(this).parent().remove();
+                            $(this).hide(300)
+                            setTimeout(() => {
+                                $(this).parent().remove();
+                            }, 500);
                         }, 500);
-                    }, 500);
-                }
-            })
-        }
+                    }
+                })
+            }
 
         $("img:not(:first).bird").on("click", function () {
             // this.css(object);
