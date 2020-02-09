@@ -5,6 +5,7 @@ const urlParams = window.location.search;
 let levelval = getSecondPart(urlParams);
 let speed = 0;
 let birdsArray = [];
+var bgSound;
 class Bird {
     constructor(top, src) {
         let birdImg = document.createElement("img");
@@ -37,6 +38,24 @@ class Bird {
     getRight = function () {
         return this.bird.style.right;
 
+    }
+}
+//class for sound
+class sound {
+    constructor(src) {
+        this.sound = document.createElement("audio");
+        this.sound.src = src;
+        this.sound.setAttribute("preload", "auto");
+        this.sound.setAttribute("controls", "none");
+        this.sound.loop = true;
+        this.sound.style.display = "none";
+        document.body.appendChild(this.sound);
+    }
+    play=function () {
+        this.sound.play();
+    }
+    stop=function () {
+        this.sound.pause();
     }
 }
 
@@ -77,14 +96,15 @@ startBtn.on("click", function () {
 startBtn.on("click", startgame);
 function startgame() {
     let time = 0;
+    bgSound = new sound("../sounds/bgmusic.mp3");
+    bgSound.play();
     window.setInterval(function () {
         let topcount = 1;
         time++;
-
         let birdsNumber = Math.floor(Math.random() * 3) + 1;
         for (let i = 0; i <= birdsNumber; i++) {
             let topp = Math.floor(Math.random() * (windowHeight - 200)) + (0);
-            let birdObj = new Bird(topp + Math.floor(Math.random()*10), images[Math.floor(Math.random() * 3) + 0])
+            let birdObj = new Bird(topp + Math.floor(Math.random() * 10), images[Math.floor(Math.random() * 3) + 0])
             birdObj.addtoParent();
             birdObj.moveLeft();
             birdsArray.push(birdObj);
