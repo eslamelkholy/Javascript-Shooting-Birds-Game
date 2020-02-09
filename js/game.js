@@ -6,6 +6,8 @@ let levelval = getSecondPart(urlParams);
 let speed = 0;
 let birdsArray = [];
 var bgSound;
+var killSound;
+var bombFire;
 class Bird {
     constructor(top, src) {
         let birdImg = document.createElement("img");
@@ -44,12 +46,12 @@ class Bird {
 }
 //class for sound
 class sound {
-    constructor(src) {
+    constructor(src,loopFalg) {
         this.sound = document.createElement("audio");
         this.sound.src = src;
         this.sound.setAttribute("preload", "auto");
         this.sound.setAttribute("controls", "none");
-        this.sound.loop = true;
+        this.sound.loop = loopFalg;
         this.sound.style.display = "none";
         document.body.appendChild(this.sound);
     }
@@ -110,7 +112,8 @@ startBtn.on("click", startgame);
 
 function startgame() {
     let time = 0;
-    bgSound = new sound("../sounds/bgmusic.mp3");
+    bgSound = new sound("../sounds/bgmusic.mp3",true);
+    killSound=new sound("../sounds/kill.mp3",false);
     bgSound.play();
     window.setInterval(function () {
         // var topcount = 1;
@@ -140,9 +143,10 @@ function startgame() {
             }, 5000);
 
             bomb.on("click", function () {
+                bombFire=new sound("../sounds/bomb.mp3")
                 $(this).attr("src", "/images/DarlingScholarlyDoe-small.gif");
                 $(this).addClass("boom");
-
+                bombFire.play();
                 let leftValue = parseInt(bombContainer.css("left"));
                 let topValue = parseInt(bombContainer.css("top"));
                 // console.log("left ",leftValue ," top ", topValue);
@@ -172,6 +176,7 @@ function startgame() {
         }
 
         $("img:not(:first).bird").on("click", function () {
+            killSound.play();
             $(this).stop();
             $(this).attr("src", "images/die.png").fadeTo(2000);
             $(this).animate({
