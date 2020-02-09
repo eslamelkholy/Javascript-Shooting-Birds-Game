@@ -261,3 +261,9 @@ h1 {
 }
 /* make white background transparent VV */
 /* mix-blend-mode: multiply; */
+.score{
+  float: right;
+  margin-right: 40px;
+  margin-top: -30px;
+  font-family: tahoma;
+}

@@ -173,9 +173,10 @@ function startgame() {
 
         $("img:not(:first).bird").on("click", function () {
             // this.css(object);
+            $(this).stop();
             $(this).attr("src", "images/die.png").fadeTo(2000);
             $(this).animate({
-                top: '350px',
+                top: '450px',
                 opacity: '0.8'
             }, 1500).hide(1000);
         });
