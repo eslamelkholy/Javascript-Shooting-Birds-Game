@@ -2,6 +2,7 @@ let images = ["./images/20.gif", "./images/30.gif", "./images/40.gif"];
 let windowWidth = window.innerWidth;
 let windowHeight = window.innerHeight;
 const urlParams = window.location.search;
+<<<<<<< HEAD
 let levelval = localStorage.getItem("level");
 let speed = 0;
 let birdsArray = [];
@@ -17,6 +18,17 @@ class Bird {
         this.bird.src = src;
         this.bird.classList.add("bird");
         // this.bird.classList.add("flip");
+=======
+let levelval = getSecondPart(urlParams);
+let speed = 0;
+let birdsArray = [];
+class Bird {
+    constructor(top, src) {
+        let birdImg = document.createElement("img");
+        this.bird = birdImg;
+        this.bird.src = src;
+        this.bird.classList.add("bird");
+>>>>>>> eec9f2bf1ad4f07a8a480843a70755e97234a6a8
         this.bird.style.top = top + "px";
         this.bird.style.left = "100%";
         this.myInterval;
@@ -31,9 +43,17 @@ class Bird {
         this.bird.style.right = parseInt(this.bird.style.right) + counter + "px";
         //  this.bird.style.right = 10+"px";
         $(this.bird).animate({
+<<<<<<< HEAD
             // right: "+=200"
             left: "-10%"
         }, 5000)
+=======
+            left: "-10%"
+        }, speed, function () {
+            $(this).remove()
+
+        })
+>>>>>>> eec9f2bf1ad4f07a8a480843a70755e97234a6a8
 
 
 
@@ -42,6 +62,7 @@ class Bird {
         return this.bird.style.right;
 
     }
+<<<<<<< HEAD
     removeBird = function () {
         // $(".bird").hide();
         // var body = document.querySelector("body");
@@ -52,10 +73,13 @@ class Bird {
 
 
     }
+=======
+>>>>>>> eec9f2bf1ad4f07a8a480843a70755e97234a6a8
 }
 
 switch (levelval) {
     case "level1":
+<<<<<<< HEAD
         speed = 2000;
         break;
     case "level2":
@@ -87,6 +111,22 @@ window.setInterval(function () {
     // birdsArray.shift();
     // console.log(birdsArray.length);
 }, 1500);
+=======
+        speed = 7000;
+        break;
+    case "level2":
+        speed = 4000;
+        break;
+}
+
+
+//code for removing newly created objects
+// window.setInterval(function () {
+//     for (let i = 0; i < birdsArray.length; i++) {
+//         birdsArray.shift();
+//     }
+// }, 50);
+>>>>>>> eec9f2bf1ad4f07a8a480843a70755e97234a6a8
 
 function getSecondPart(str) {
     return str.split('levels=')[1];
@@ -101,13 +141,11 @@ $(function () {
 });
 
 let startBtn = $("#welcome button")
-
 startBtn.on("click", function () {
     $("#welcome").addClass("out");
     this.blur()
 })
 startBtn.on("click", startgame);
-
 function startgame() {
     let time = 0;
     window.setInterval(function () {
@@ -117,7 +155,7 @@ function startgame() {
         let birdsNumber = Math.floor(Math.random() * 3) + 1;
         for (let i = 0; i <= birdsNumber; i++) {
             let topp = Math.floor(Math.random() * (windowHeight - 200)) + (0);
-            let birdObj = new Bird(topp + topcount, images[Math.floor(Math.random() * 3) + 0])
+            let birdObj = new Bird(topp + Math.floor(Math.random()*10), images[Math.floor(Math.random() * 3) + 0])
             birdObj.addtoParent();
             birdObj.moveLeft();
             birdsArray.push(birdObj);
@@ -173,17 +211,19 @@ function startgame() {
 
         $("img:not(:first).bird").on("click", function () {
             // this.css(object);
-            $(this).stop();
             $(this).attr("src", "images/die.png").fadeTo(2000);
             $(this).animate({
-                top: '450px',
+                top: '350px',
                 opacity: '0.8'
             }, 1500).hide(1000);
         });
 
 
-    }, speed);
+    }, 1000);
 
 
 
 }
+
+
+
