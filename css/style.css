@@ -261,3 +261,10 @@ h1 {
 }
 /* make white background transparent VV */
 /* mix-blend-mode: multiply; */
+
+.caveMan{
+  position: absolute;
+  top: 78%;
+  transform: rotateY(180deg);
+  right: 0;
+}

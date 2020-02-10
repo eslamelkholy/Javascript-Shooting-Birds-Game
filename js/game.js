@@ -126,9 +126,9 @@ function startgame() {
 
         if (levelval == "level2")
             if (time % 5 == 0) {
-                let bombContainer = $(`<div id="bomb" class="falling" draggable="false"></div>`);
+                let bombContainer = $(`<div id="bomb" class="falling" ></div>`);
                 myBomb = bombContainer;
-                let bomb = $(`<img src="/images/ezgif.com-crop.gif">`);
+                let bomb = $(`<img src="/images/ezgif.com-crop.gif" draggable="false">`);
                 bombContainer.css("left", Math.floor(Math.random() * 100) + "%")
                 // bomb.attr("src","");
                 // bomb.removeClass("boom");
