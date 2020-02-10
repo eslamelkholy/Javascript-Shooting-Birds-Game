@@ -3,21 +3,21 @@
   margin: 0;
   padding: 0;
 }
+
 body {
-  background:url("../images/bg3.png");
+  background: url("../images/bg3.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
   overflow: hidden;
 }
-.wrapper {
 
-}
 h1 {
   text-align: center;
   margin-top: 40px;
   margin-right: 140px;
 }
+
 #gameTimer {
   text-align: center;
   margin-right: 160px;
@@ -25,24 +25,23 @@ h1 {
   font-weight: bold;
   margin-top: 10px;
 }
+
 #game {
-  /* margin-right: 100px; */
   margin-right: auto;
   margin-top: 20px;
-  /* margin-left: 20px; */
   margin-left: auto;
   text-align: center;
   border: 3px solid black;
-  /* width: 1000px; */
-  /* width: 75%; */
   width: 800px;
   height: 550px;
 }
+
 #gameBackground {
   position: relative;
   width: 100%;
   height: 100%;
 }
+
 #footer {
   font-size: 30px;
   margin-top: -40px;
@@ -52,6 +51,7 @@ h1 {
   position: relative;
   font-weight: bold;
 }
+
 .footerDivs {
   width: 300px;
   float: left;
@@ -59,96 +59,27 @@ h1 {
   margin-left: 20px;
   padding-left: 10px;
 }
+
 .score {
-  text-align: right;
-  margin-left: -20px;
-  padding-left: 10px;
+  color: white;
+  font-size: 24px;
+  margin: 6px 12px;
 }
+
 .level {
   text-align: center;
 }
+
 #birds img {
   position: relative;
 }
+
 #birds {
   margin-top: -550px;
   position: relative;
 }
 
-  /* Note on die filter: hue-rotate(240deg) saturate(3.3) grayscale(50%); */
-
-/* Eslam part */
-
-
-h1 {
-    text-align: center;
-    margin-top: 40px;
-}
-
-#gameTimer {
-    text-align: center;
-    margin-right: 160px;
-    font-size: 30px;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-#game {
-    margin-right: auto;
-    margin-top: 20px;
-    margin-left: auto;
-    text-align: center;
-    border: 3px solid black;
-    width: 800px;
-    height: 550px;
-}
-
-#gameBackground {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-#footer {
-    font-size: 30px;
-    margin-top: -40px;
-    margin-left: 220px;
-    width: 1000px;
-    text-align: center;
-    position: relative;
-    font-weight: bold;
-}
-
-.footerDivs {
-    width: 300px;
-    float: left;
-    text-align: left;
-    margin-left: 20px;
-    padding-left: 10px;
-}
-
-.score {
-    text-align: right;
-    margin-left: -20px;
-    padding-left: 10px;
-}
-
-.level {
-    text-align: center;
-}
-
-#birds img {
-    position: relative;
-}
-
-#birds {
-    margin-top: -550px;
-    position: relative;
-}
-
-.test {
-    /* Note on die filter: hue-rotate(240deg) saturate(3.3) grayscale(50%); */
-}
+/* Note on die filter: hue-rotate(240deg) saturate(3.3) grayscale(50%); */
 
 .bird {
   display: block;
@@ -157,73 +88,66 @@ h1 {
   width: 100px;
   height: 100px;
   margin: 10px 2px;
-  
-  /* mix-blend-mode: multiply; */
-  /* top: 0; */
 }
-.flip{
+
+.flip {
   transform: rotate(180deg);
 }
 
-
-
-/* Mahmoud part */
-
 #welcome {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    transition: all 1s cubic-bezier(0.93, -0.22, 1, -0.01);
-    font-family: cursive;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  transition: all 1s cubic-bezier(0.93, -0.22, 1, -0.01);
+  font-family: cursive;
 }
 
 #welcome h1 {
-    transform: translate(-50%, -50%);
-    position: fixed;
-    top: 33%;
-    left: 50%;
-    transition: all 1s cubic-bezier(0.93, -0.22, 1, -0.01);
-    font-size: 32px;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transition: all 1s cubic-bezier(0.93, -0.22, 1, -0.01);
+  font-size: 32px;
 
 }
 
 #welcome button {
-    transform: translate(-50%, -50%);
-    position: fixed;
-    top: 58%;
-    left: 50%;
-    background: #90b1ee;
-    border: none;
-    padding: 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 20px;
-    transition: all 1s;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  top: 63%;
+  left: 50%;
+  background: #90b1ee;
+  border: none;
+  padding: 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 20px;
+  transition: all 1s;
 }
 
 #welcome button:hover {
-    background-color: #5084e4;
-    color: white;
-    cursor: pointer;
+  background-color: #5084e4;
+  color: white;
+  cursor: pointer;
 }
 
 .out {
-    right: 100% !important;
-    color: transparent !important;
+  right: 100% !important;
+  color: transparent !important;
 }
 
 .out h1,
 .out button {
-    /* right: 100%; */
-    left: -40% !important;
-    background: transparent;
-    color: transparent;
-    border: none;
+  left: -40% !important;
+  background: transparent;
+  color: transparent;
+  border: none;
 }
 
 #bomb {
@@ -234,45 +158,41 @@ h1 {
   top: -350px;
 }
 
-.falling{
+.falling {
   animation: 6s bombdown forwards;
 }
 
-@keyframes bombdown{
-  0%{
+@keyframes bombdown {
+  0% {
     top: -350px;
   }
-  100%{
+
+  100% {
     top: 120%;
   }
 }
 
 
-#bomb img{
+#bomb img {
   width: 100px;
   transform: translateY(70%);
   margin: 0 auto;
   display: block;
 }
 
-.boom{
+.boom {
   width: 450px !important;
-  transform: translate(-10%,-10%) !important;
+  transform: translate(-10%, -10%) !important;
 }
-/* make white background transparent VV */
-/* mix-blend-mode: multiply; */
-<<<<<<< HEAD
 
-.caveMan{
+.caveMan {
   position: absolute;
   top: 78%;
   transform: rotateY(180deg);
   right: 0;
-=======
-.score{
-  float: right;
-  margin-right: 40px;
-  margin-top: -30px;
-  font-family: tahoma;
->>>>>>> d736844d9ad40430c3a3a85ac78bcee1c8049c73
+  transition: right 60s;
+}
+
+.moving {
+  right: 100%;
 }
