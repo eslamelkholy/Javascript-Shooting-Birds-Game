@@ -101,20 +101,35 @@ function startgame() {
         if(killCount > 20){
             Swal.fire({
                 title: 'success!',
-                text: 'yes you did it ! <br> wanna try again ? ',
+                text: 'yes you did it ! wanna try again ? ',
                 icon: 'success',
-                confirmButtonText: 'Cool',
+                confirmButtonText: 'lets play again',
+                showCancelButton: true,
                 allowOutsideClick: false
-            })
+            }).then(function(){
+                //Confirmed
+            }, function(dismiss){
+                // if(dismiss == 'cancel'){
+                if(dismiss){
+                    //swal({..}); //un-comment this line to add another sweet alert popup on cancel
+                }
+            });
         }else{
             Swal.fire({
                 title: 'Error!',
                 text: 'sorry you lost :C. wanna try again ? ',
                 icon: 'error',
                 showCancelButton: true,
-                confirmButtonText: 'Cool',
+                confirmButtonText: 'ok !',
                 allowOutsideClick: false
-            })
+            }).then(function(){
+                //Confirmed
+            }, function(dismiss){
+                // if(dismiss == 'cancel'){
+                if(dismiss){
+                    //swal({..}); //un-comment this line to add another sweet alert popup on cancel
+                }
+            });
         }
     }, 60000);
     
