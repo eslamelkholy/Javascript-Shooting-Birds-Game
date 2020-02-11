@@ -7,9 +7,13 @@
   text-align-last: center;
   user-select: none;
 }
+.row{
+  margin-top: 5%;
+  width: 99%;
+}
 .login-page {
   width: 360px;
-  margin: 10% 0 0 10%;
+  margin: 0 0 0 10%;
 }
 
 .form {
@@ -17,7 +21,7 @@
   z-index: 1;
   max-width: 360px;
   margin: 0 auto 100px;
-  padding: 45px;
+  padding: 0 45px;
   text-align: center;
 }
 
@@ -116,5 +120,15 @@ body {
   background:url("../images/wallpapersden.com_fortnite-chapter-2_3840x2160.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position-y: -90px;
+  background-position-y: -80px;
+}
+
+.lead{
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.lead h2{
+  margin-top: 8px;
 }
