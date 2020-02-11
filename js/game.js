@@ -27,11 +27,8 @@ class Bird {
     }
     moveLeft = function () {
 
-        //  let counter = 100;
-        // this.bird.style.right = parseInt(this.bird.style.right) + counter + "px";
         let counter = 100;
         this.bird.style.right = parseInt(this.bird.style.right) + counter + "px";
-        //  this.bird.style.right = 10+"px";
         $(this.bird).animate({
             // right: "+=200"
             left: "-10%"
