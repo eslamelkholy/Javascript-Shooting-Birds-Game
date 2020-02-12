@@ -2,20 +2,21 @@ let images = ["./images/20.gif", "./images/30.gif", "./images/40.gif"];
 let windowWidth = window.innerWidth;
 let windowHeight = window.innerHeight;
 const urlParams = window.location.search;
-let levelval = localStorage.getItem("level");
-// let speed = 0;
-let speed = levelval=="level1" ? 7000 : 4000
+let levelval = getSecondPart(urlParams);
+console.log(levelval)
+let userName = urlParams.split('=')[1].split('&')[0]
+let speed = levelval == "level1" ? 7000 : 4000;
 let birdsArray = [];
 var bgSound;
 var killSound;
 var bombFire;
-let killCount=0;
+let killCount = 0;
 let myInterval;
 
 class Bird {
     constructor(top, src) {
         let birdImg = document.createElement("img");
-        birdImg.setAttribute("draggable","false")
+        birdImg.setAttribute("draggable", "false")
         this.bird = birdImg;
         this.bird.src = src;
         this.bird.classList.add("bird");
@@ -32,15 +33,12 @@ class Bird {
     }
     moveLeft = function () {
 
-        //  let counter = 100;
-        // this.bird.style.right = parseInt(this.bird.style.right) + counter + "px";
         let counter = 100;
         this.bird.style.right = parseInt(this.bird.style.right) + counter + "px";
-        //  this.bird.style.right = 10+"px";
         $(this.bird).animate({
             // right: "+=200"
             left: "-10%"
-        }, speed,function () {
+        }, speed, function () {
             this.remove();
         })
     }
@@ -51,7 +49,7 @@ class Bird {
 }
 //class for sound
 class sound {
-    constructor(src,loopFalg) {
+    constructor(src, loopFalg) {
         this.sound = document.createElement("audio");
         this.sound.src = src;
         this.sound.setAttribute("preload", "auto");
@@ -60,10 +58,10 @@ class sound {
         this.sound.style.display = "none";
         document.body.appendChild(this.sound);
     }
-    play=function () {
+    play = function () {
         this.sound.play();
     }
-    stop=function () {
+    stop = function () {
         this.sound.pause();
     }
 }
@@ -80,11 +78,16 @@ function getSecondPart(str) {
     return str.split('levels=')[1];
 }
 
+
 $(function () {
-    // sending name/level over localStorage
-    $("h1 span:first").text(localStorage.getItem("name"))
-    $("h1 span:last").text(localStorage.getItem("level"))
-    // ends here
+    let parsing = JSON.parse(localStorage.getItem(userName));
+    $("h1 span:first").text(userName);
+    $("h1 span:last").text(levelval);
+    if (parsing.name == userName) {
+
+        $(".score h2:last span").text(parsing.score)
+    }
+
 });
 
 let startBtn = $("#welcome button")
@@ -107,15 +110,15 @@ function startgame() {
                 confirmButtonText: 'lets play again',
                 showCancelButton: true,
                 allowOutsideClick: false
-            }).then(function(){
+            }).then(function () {
                 //Confirmed
-            }, function(dismiss){
+            }, function (dismiss) {
                 // if(dismiss == 'cancel'){
-                if(dismiss){
+                if (dismiss) {
                     //swal({..}); //un-comment this line to add another sweet alert popup on cancel
                 }
             });
-        }else{
+        } else {
             Swal.fire({
                 title: 'Error!',
                 text: 'sorry you lost :C. wanna try again ? ',
@@ -123,20 +126,20 @@ function startgame() {
                 showCancelButton: true,
                 confirmButtonText: 'ok !',
                 allowOutsideClick: false
-            }).then(function(){
+            }).then(function () {
                 //Confirmed
-            }, function(dismiss){
+            }, function (dismiss) {
                 // if(dismiss == 'cancel'){
-                if(dismiss){
+                if (dismiss) {
                     //swal({..}); //un-comment this line to add another sweet alert popup on cancel
                 }
             });
         }
     }, 60000);
-    
+
     let time = 0;
-    bgSound = new sound("../sounds/bgmusic.mp3",true);
-    killSound=new sound("../sounds/kill.mp3",false);
+    bgSound = new sound("../sounds/bgmusic.mp3", true);
+    killSound = new sound("../sounds/kill.mp3", false);
     bgSound.play();
     myInterval = window.setInterval(function () {
         // var topcount = 1;
@@ -151,7 +154,7 @@ function startgame() {
             // topcount += 20;
         }
 
-        if(levelval=="level2"){
+        if (levelval == "level2") {
             bomb(time);
         }
 
@@ -165,31 +168,28 @@ function startgame() {
                 opacity: '0.8'
             }, 1500).hide(1000);
         });
-        $(function(){
-    
+        $(function () {
+
             $('*').css('cursor', 'url(images/images.png),auto');
         });
-        function gameScore(score)
-        {
+        function gameScore(score) {
             let currentScore = parseInt($("span.playerScore").text());
-            switch(score)
-            {
+        
+            switch (score) {
                 case './images/20.gif':
                     currentScore = currentScore + 10;
                     $("span.playerScore").text(currentScore);
                     killCount++;
                     break;
                 case './images/30.gif':
-                    if(currentScore >= 10)
-                    {
+                    if (currentScore >= 10) {
                         currentScore = parseInt(currentScore) - 10;
                         $("span.playerScore").text(currentScore);
                     }
-                    else if(currentScore == 5)
-                    {
+                    else if (currentScore == 5) {
                         $("span.playerScore").text("0");
                     }
-                    
+
                     break;
                 case './images/40.gif':
                     currentScore = currentScore + 5;
@@ -197,6 +197,10 @@ function startgame() {
                     killCount++;
                     break;
             }
+            localStorage.setItem(userName, JSON.stringify({
+                name: userName,
+                score: currentScore
+            }));
         }
     }, 1000);
 }

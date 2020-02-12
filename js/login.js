@@ -1,9 +1,7 @@
-$(":submit").on("click",function() {
-    localStorage.setItem("name",$(":text").val())
-    localStorage.setItem("level",$("select").val())
-    console.log(
-        localStorage.getItem("name"),
-        localStorage.getItem("level")
-    );
-    
-})
+let arr=[];
+for(obj in window.localStorage){
+console.log(window.localStorage[obj])
+if( window.localStorage[obj] instanceof object){
+    arr.push(window.localStorage[obj]);
+}
+}
