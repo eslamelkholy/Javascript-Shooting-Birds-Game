@@ -113,10 +113,13 @@ function startgame() {
                 allowOutsideClick: false
             }).then(function () {
                 //Confirmed
-            }, function (dismiss) {
-                // if(dismiss == 'cancel'){
-                if (dismiss) {
-                    //swal({..}); //un-comment this line to add another sweet alert popup on cancel
+            }, then(function(result){
+                if(result.value){
+                    document.getElementById("myCaveMan").classList.remove("moving");
+                    document.getElementById("myCaveMan").style.right = "0"
+                    startBtn.trigger("click");
+                }else if(result.dismiss == 'cancel'){
+                    window.location.href = "index.html";
                 }
             });
         } else {
