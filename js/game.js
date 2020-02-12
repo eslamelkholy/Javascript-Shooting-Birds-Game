@@ -98,6 +98,7 @@ function startgame() {
     this.blur()
     setTimeout(() => {
         clearInterval(myInterval);
+        // https://stackoverflow.com/questions/42378426/sweetalert2-bind-another-event-to-cancel-button
         if(killCount > 20){
             Swal.fire({
                 title: 'success!',
@@ -204,20 +205,16 @@ function bomb(time) {
     if (time % 5 == 0) {
         let bombContainer = $(`<div id="bomb" class="falling"></div>`);
         let bomb = $(`<img src="/images/ezgif.com-crop.gif" draggable="false">`);
-        myBomb = bombContainer;
         bombContainer.css("left", Math.floor(Math.random() * 100) + "%")
         bombContainer.append(bomb);
         $("body").append(bombContainer);
-        setTimeout(function () {
-            bombContainer.remove();
-        }, 5000);
+        setTimeout(function () { bombContainer.remove() }, 5000);
         bomb.on("click", function () {
             let leftValue = parseInt(bombContainer.css("left"));
             let topValue = parseInt(bombContainer.css("top"));
-            bombFire=new sound("../sounds/bomb.mp3");
+            bombFire=new sound("../sounds/bomb.mp3").play();
             $(this).attr("src", "/images/DarlingScholarlyDoe-small.gif");
             $(this).addClass("boom");
-            bombFire.play();
             for (i of birdsArray) {
                 let birdleft = parseInt($(i.bird).css("left"));
                 let birdtop = parseInt($(i.bird).css("top"));
@@ -229,11 +226,8 @@ function bomb(time) {
                 }
                 bombContainer.css("top", topValue);
                 bombContainer.removeClass("falling");
-                setTimeout(() => {
-                    $(this).hide(300)
-                    setTimeout(() => {
-                        $(this).parent().remove();
-                    }, 500);
+                setTimeout(() => { $(this).hide(300)
+                    setTimeout(() => { $(this).parent().remove() }, 500);
                 }, 500);
             }
         })
