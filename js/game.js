@@ -111,9 +111,7 @@ function startgame() {
                 confirmButtonText: 'lets play again',
                 showCancelButton: true,
                 allowOutsideClick: false
-            }).then(function () {
-                //Confirmed
-            }, then(function(result){
+            }).then(function(result){
                 if(result.value){
                     document.getElementById("myCaveMan").classList.remove("moving");
                     document.getElementById("myCaveMan").style.right = "0"
