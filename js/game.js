@@ -94,6 +94,7 @@ let startBtn = $("#welcome button")
 
 startBtn.on("click", startgame);
 function startgame() {
+    $("span.playerScore").text("0");
     $("#welcome").addClass("out");
     setTimeout(() => {
         $(".caveMan").addClass("moving")
@@ -101,7 +102,8 @@ function startgame() {
     this.blur()
     setTimeout(() => {
         clearInterval(myInterval);
-        if (killCount > 20) {
+        // https://stackoverflow.com/questions/42378426/sweetalert2-bind-another-event-to-cancel-button
+        if(killCount > 20){
             Swal.fire({
                 title: 'success!',
                 text: 'yes you did it ! wanna try again ? ',
@@ -125,16 +127,17 @@ function startgame() {
                 showCancelButton: true,
                 confirmButtonText: 'ok !',
                 allowOutsideClick: false
-            }).then(function () {
-                //Confirmed
-            }, function (dismiss) {
-                // if(dismiss == 'cancel'){
-                if (dismiss) {
-                    //swal({..}); //un-comment this line to add another sweet alert popup on cancel
+            }).then(function(result){
+                if(result.value){
+                    document.getElementById("myCaveMan").classList.remove("moving");
+                    document.getElementById("myCaveMan").style.right = "0"
+                    startBtn.trigger("click");
+                }else if(result.dismiss == 'cancel'){
+                    window.location.href = "index.html";
                 }
             });
         }
-    }, 60000);
+    }, 10000);
 
     let time = 0;
     bgSound = new sound("../sounds/bgmusic.mp3", true);
@@ -208,20 +211,16 @@ function bomb(time) {
     if (time % 5 == 0) {
         let bombContainer = $(`<div id="bomb" class="falling"></div>`);
         let bomb = $(`<img src="/images/ezgif.com-crop.gif" draggable="false">`);
-        myBomb = bombContainer;
         bombContainer.css("left", Math.floor(Math.random() * 100) + "%")
         bombContainer.append(bomb);
         $("body").append(bombContainer);
-        setTimeout(function () {
-            bombContainer.remove();
-        }, 5000);
+        setTimeout(function () { bombContainer.remove() }, 5000);
         bomb.on("click", function () {
             let leftValue = parseInt(bombContainer.css("left"));
             let topValue = parseInt(bombContainer.css("top"));
-            bombFire = new sound("../sounds/bomb.mp3");
+            bombFire=new sound("../sounds/bomb.mp3").play();
             $(this).attr("src", "/images/DarlingScholarlyDoe-small.gif");
             $(this).addClass("boom");
-            bombFire.play();
             for (i of birdsArray) {
                 let birdleft = parseInt($(i.bird).css("left"));
                 let birdtop = parseInt($(i.bird).css("top"));
@@ -233,11 +232,8 @@ function bomb(time) {
                 }
                 bombContainer.css("top", topValue);
                 bombContainer.removeClass("falling");
-                setTimeout(() => {
-                    $(this).hide(300)
-                    setTimeout(() => {
-                        $(this).parent().remove();
-                    }, 500);
+                setTimeout(() => { $(this).hide(300)
+                    setTimeout(() => { $(this).parent().remove() }, 500);
                 }, 500);
             }
         })
