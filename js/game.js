@@ -113,8 +113,6 @@ function startgame() {
                 allowOutsideClick: false
             }).then(function(result){
                 if(result.value){
-                    document.getElementById("myCaveMan").classList.remove("moving");
-                    document.getElementById("myCaveMan").style.right = "0"
                     startBtn.trigger("click");
                 }else if(result.dismiss == 'cancel'){
                     window.location.href = "index.html";
@@ -130,8 +128,6 @@ function startgame() {
                 allowOutsideClick: false
             }).then(function(result){
                 if(result.value){
-                    document.getElementById("myCaveMan").classList.remove("moving");
-                    document.getElementById("myCaveMan").style.right = "0"
                     startBtn.trigger("click");
                 }else if(result.dismiss == 'cancel'){
                     window.location.href = "index.html";
