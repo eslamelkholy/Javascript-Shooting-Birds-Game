@@ -94,6 +94,7 @@ let startBtn = $("#welcome button")
 
 startBtn.on("click", startgame);
 function startgame() {
+    $("span.playerScore").text("0");
     $("#welcome").addClass("out");
     setTimeout(() => {
         $(".caveMan").addClass("moving")
@@ -126,16 +127,17 @@ function startgame() {
                 showCancelButton: true,
                 confirmButtonText: 'ok !',
                 allowOutsideClick: false
-            }).then(function () {
-                //Confirmed
-            }, function (dismiss) {
-                // if(dismiss == 'cancel'){
-                if (dismiss) {
-                    //swal({..}); //un-comment this line to add another sweet alert popup on cancel
+            }).then(function(result){
+                if(result.value){
+                    document.getElementById("myCaveMan").classList.remove("moving");
+                    document.getElementById("myCaveMan").style.right = "0"
+                    startBtn.trigger("click");
+                }else if(result.dismiss == 'cancel'){
+                    window.location.href = "index.html";
                 }
             });
         }
-    }, 60000);
+    }, 10000);
 
     let time = 0;
     bgSound = new sound("../sounds/bgmusic.mp3", true);
