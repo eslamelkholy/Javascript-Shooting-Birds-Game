@@ -110,6 +110,7 @@ function startgame() {
                 allowOutsideClick: false
             }).then(function (result) {
                 if (result.value) {
+                    bgSound.stop();
                     startBtn.trigger("click");
                 } else if (result.dismiss == 'cancel') {
                     window.location.href = "index.html";
