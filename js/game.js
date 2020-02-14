@@ -3,7 +3,6 @@ let windowWidth = window.innerWidth;
 let windowHeight = window.innerHeight;
 const urlParams = window.location.search;
 let levelval = getSecondPart(urlParams);
-console.log(levelval)
 let userName = urlParams.split('=')[1].split('&')[0]
 let speed = levelval == "level1" ? 7000 : 4000;
 let birdsArray = [];
@@ -12,7 +11,7 @@ var killSound;
 var bombFire;
 let killCount = 0;
 let myInterval;
-
+//esraa
 class Bird {
     constructor(top, src) {
         let birdImg = document.createElement("img");
@@ -20,10 +19,8 @@ class Bird {
         this.bird = birdImg;
         this.bird.src = src;
         this.bird.classList.add("bird");
-        // this.bird.classList.add("flip");
         this.bird.style.top = top + "px";
         this.bird.style.right = 0;
-        // this.myInterval;
         this.bird.style.left = "100%";
         this.myInterval;
     }
@@ -32,21 +29,14 @@ class Bird {
         body.appendChild(this.bird);
     }
     moveLeft = function () {
-
-        let counter = 100;
-        this.bird.style.right = parseInt(this.bird.style.right) + counter + "px";
         $(this.bird).animate({
-            // right: "+=200"
             left: "-10%"
         }, speed, function () {
             this.remove();
         })
     }
-    getRight = function () {
-        return this.bird.style.right;
-
-    }
 }
+//esraa
 //class for sound
 class sound {
     constructor(src, loopFalg) {
@@ -65,14 +55,6 @@ class sound {
         this.sound.pause();
     }
 }
-// switch (levelval) {
-//     case "level1":
-//         speed = 7000;
-//         break;
-//     case "level2":
-//         speed = 4000;
-//         break;
-// }
 
 function getSecondPart(str) {
     return str.split('levels=')[1];
@@ -80,16 +62,16 @@ function getSecondPart(str) {
 
 
 $(function () {
+    //esraa and Mahmoud
     let parsing = JSON.parse(localStorage.getItem(userName));
     $("h1 span:first").text(userName);
     $("h1 span:last").text(levelval);
     if (parsing.name == userName) {
-
         $(".score h2:last span").text(parsing.score)
     }
 
 });
-
+//Mahmoud
 let startBtn = $("#welcome button")
 
 startBtn.on("click", startgame);
@@ -103,7 +85,7 @@ function startgame() {
     setTimeout(() => {
         clearInterval(myInterval);
         // https://stackoverflow.com/questions/42378426/sweetalert2-bind-another-event-to-cancel-button
-        if(killCount > 20){
+        if (killCount > 20) {
             Swal.fire({
                 title: 'success!',
                 text: 'yes you did it ! wanna try again ? ',
@@ -111,10 +93,10 @@ function startgame() {
                 confirmButtonText: 'lets play again',
                 showCancelButton: true,
                 allowOutsideClick: false
-            }).then(function(result){
-                if(result.value){
+            }).then(function (result) {
+                if (result.value) {
                     startBtn.trigger("click");
-                }else if(result.dismiss == 'cancel'){
+                } else if (result.dismiss == 'cancel') {
                     window.location.href = "index.html";
                 }
             });
@@ -126,10 +108,10 @@ function startgame() {
                 showCancelButton: true,
                 confirmButtonText: 'ok !',
                 allowOutsideClick: false
-            }).then(function(result){
-                if(result.value){
+            }).then(function (result) {
+                if (result.value) {
                     startBtn.trigger("click");
-                }else if(result.dismiss == 'cancel'){
+                } else if (result.dismiss == 'cancel') {
                     window.location.href = "index.html";
                 }
             });
@@ -137,11 +119,11 @@ function startgame() {
     }, 10000);
 
     let time = 0;
+    //esraa
     bgSound = new sound("../sounds/bgmusic.mp3", true);
     killSound = new sound("../sounds/kill.mp3", false);
     bgSound.play();
     myInterval = window.setInterval(function () {
-        // var topcount = 1;
         time++;
         let birdsNumber = Math.floor(Math.random() * 3) + 1;
         for (let i = 0; i <= birdsNumber; i++) {
@@ -150,13 +132,12 @@ function startgame() {
             birdObj.addtoParent();
             birdObj.moveLeft();
             birdsArray.push(birdObj);
-            // topcount += 20;
         }
 
         if (levelval == "level2") {
             bomb(time);
         }
-
+        //Eslam
         $("img:not(:first).bird").on("click", function () {
             killSound.play();
             gameScore($(this).attr('src'));
@@ -171,9 +152,10 @@ function startgame() {
 
             $('*').css('cursor', 'url(images/images.png),auto');
         });
+        //Eslam
         function gameScore(score) {
             let currentScore = parseInt($("span.playerScore").text());
-        
+
             switch (score) {
                 case './images/20.gif':
                     currentScore = currentScore + 10;
@@ -203,7 +185,7 @@ function startgame() {
         }
     }, 1000);
 }
-
+//Mahmoud
 function bomb(time) {
     if (time % 5 == 0) {
         let bombContainer = $(`<div id="bomb" class="falling"></div>`);
@@ -215,7 +197,7 @@ function bomb(time) {
         bomb.on("click", function () {
             let leftValue = parseInt(bombContainer.css("left"));
             let topValue = parseInt(bombContainer.css("top"));
-            bombFire=new sound("../sounds/bomb.mp3").play();
+            bombFire = new sound("../sounds/bomb.mp3").play();
             $(this).attr("src", "/images/DarlingScholarlyDoe-small.gif");
             $(this).addClass("boom");
             for (i of birdsArray) {
@@ -229,7 +211,8 @@ function bomb(time) {
                 }
                 bombContainer.css("top", topValue);
                 bombContainer.removeClass("falling");
-                setTimeout(() => { $(this).hide(300)
+                setTimeout(() => {
+                    $(this).hide(300)
                     setTimeout(() => { $(this).parent().remove() }, 500);
                 }, 500);
             }

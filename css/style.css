@@ -1,3 +1,4 @@
+/* esraa */
 * {
   user-select: none;
   margin: 0;
@@ -89,8 +90,7 @@ margin: 10px 20px;
   position: relative;
 }
 
-/* Note on die filter: hue-rotate(240deg) saturate(3.3) grayscale(50%); */
-
+/* esraa */
 .bird {
   display: block;
   position: absolute;
