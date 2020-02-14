@@ -116,7 +116,7 @@ function startgame() {
                 }
             });
         }
-    }, 10000);
+    }, 60000);
 
     let time = 0;
     //esraa
