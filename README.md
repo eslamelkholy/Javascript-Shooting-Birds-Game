@@ -1,9 +1,9 @@
 # Shooting Birds game
 **This is an ITI evaluation project for javascript and jquery courses**  
 ### Team Members
-  - Mahmoud Mohammed
-  - Eslam Moataz
-  - Esraa Abdelaziz
+  1. <a href="https://github.com/eslamelkholy"> Eslam Elkholy </a>
+  2. <a href="https://github.com/Mahmoud-Mohamed-Elgamily">Mahmoud Mohammed</a>
+  3. <a href="https://github.com/Esraa708"> Esraa Abdelaziz </a>
 
 ### How to play??
 
